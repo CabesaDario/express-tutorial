@@ -1,20 +1,5 @@
 <%- include("template/cabecera", {tituloWeb: 'Página de inicio'}) %>
-    <div class="col-xs-1" align="center">
-        <h1>Mi aplicación de tareas</h1>    
-        <form action ="/addtask" method="POST">
-            <input type="text" name="newtask" placeholder="add new task">        <button> Add Task </button>
-            <h2> Tareas pendientes </h2>
-            <ul class="list-group">
-                <% for( var i = 0; i < task.length; i++){ %>
-                    <li class="list-group-item"> <%= task[i] %> <button formaction="/removetask" type="submit"> borrar tarea </button></li>
-                <% } %>
-            </ul>
-        </form>
-        <h2> Tareas completadas </h2>
-        <ul class="list-group">
-            <% for(var i = 0; i < complete.length; i++){ %>
-                <li class="list-group-item"><%= complete[i] %> </li>
-            <% } %>
-        </ul>
-    </div>
+    <%- include("components/add_todo") %>
+
+    <%- include("components/todo_table") %>
 <%- include("template/footer") %>

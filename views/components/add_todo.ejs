@@ -1,24 +1,7 @@
 <form id="add_todo_form" action="/add_todo" method="POST">
-
-    <input type="text" name="add_todo_input" placeholder="ADD TODO"></input>
-  
-  </form>
-  
-  
-  ///TABLE
-  
-  
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">TODO</th>
-      </tr>
-    </thead>
-    <tbody id="todo_table">
-  
-  
-    </tbody>
-  
-    <form id="complete_todo_form" action="/complete_todo/" method="POST"></form>
-  
-</table>
+    <div class="form-group">
+        <label for="add_todo_input">Nombre de la tarea a realizar</label>
+        <input type="text" class="form-control" name="add_todo_input" placeholder="Añadir tarea" id="add_todo_input" required></input>
+    </div>
+    <button type="submit" class="btn btn-primary">Añadir</button>
+</form>
