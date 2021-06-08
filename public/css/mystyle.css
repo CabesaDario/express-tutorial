@@ -5,6 +5,24 @@
 .form-group{
     padding: 15px;
 }
-.btn-primary{
-    margin-left: 15px;
+.btn{
+    margin: 15px;
+}
+.detail_view{
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    padding: 30px;
+    border: 1px solid;
+    top: 20px;
+    left: 40vw;
+    z-index: 1;
+}
+.close {
+    cursor: pointer;
+    position: absolute;
+    top: 1%;
+    right: 0%;
+    padding: 5px 10px;
+    background-color: red;
 }

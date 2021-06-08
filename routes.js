@@ -4,9 +4,6 @@ const router = express.Router()
 
 const pass = "Triangulo+95"
 
-var task = ["sacar al perro", "daily diaria"];
-var complete = ["ITV revisión"];
-
 function getConnection() {
   return mysql.createConnection({
       host: "localhost",
@@ -26,13 +23,14 @@ con.connect(function(err) {
 router.get('/', (req, res) => {
     res.render("index"); //estos datos podrian venir de una base de datos, el objeto TITULO QUIERO DECIR
 });
+
 router.get('/get_todos', (req, res) => {
     const queryString = "SELECT * FROM tasks"
     con.query(queryString, (err, rows, fields) => {
       if (err) {
-        console.log("Failed to query at /get_todo: " + err)
+        console.log("Fallo al cargar los todos /get_todo: " + err)
       }
-      console.log("Getting data from database at /get_todos")
+      console.log("Sacando las areas de la base de datos /get_todos")
       res.json(rows)
     })
   })
@@ -47,10 +45,10 @@ router.post('/complete_todo/:id/:complete', (req, res) => {
     const queryString = `UPDATE tasks SET complete = '${newState}' WHERE id = ?`
     con.query(queryString, [todo_id], (err, rows, fields) => {
       if (err) {
-        console.log("Failed to query at /complete_todo/: " + todo_id + " " +
+        console.log("Fallo al cambiar el estado de la tarea /complete_todo/: " + todo_id + " " +
         err)
       }
-      console.log("@/complete_todo/ Completing todo with id " + todo_id)
+      console.log("@/complete_todo/ Cambiando el estado de la tarea " + todo_id)
       res.redirect('/')
     })
 }) 
@@ -75,7 +73,7 @@ router.post('/delete_todo/:id', (req, res) => {
       console.log("Fallo al intentar borrar la tarea con id " + todo_id + " " +
       err)
     }
-    console.log("@/complete_todo/ Tarea borrada con id " + todo_id)
+    console.log("@/delete_todo/ Tarea borrada con id " + todo_id)
     res.redirect('/')
   })
 }) 
@@ -91,7 +89,17 @@ router.post('/add_todo', (req, res) => {
       res.redirect('/')
     })
 })
-
+router.post('/delete_all_todo', (req, res) => {
+  const queryString = `DELETE FROM tasks WHERE complete=1`;
+  con.query(queryString, (err) => {
+    if (err) {
+      console.log("Fallo al intentar borrar todas las tareas completadas" +
+      err)
+    }
+    console.log("@/delete_all_todo/ Todas las tareas completadas borradas correctamente")
+    res.redirect('/')
+  })
+})
 router.get('/servicios', (req, res) => {
     res.render("servicios", {tituloServicios : "mi titulo dinámico de servicios"}) 
 });

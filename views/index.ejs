@@ -1,5 +1,6 @@
 <%- include("template/cabecera", {tituloWeb: 'Página de inicio'}) %>
     <%- include("components/add_todo") %>
-
+    <div id="detail_view" class="detail_view"></div>
+    <button type="button" class="btn btn-warning" onclick="deletePending()">Borrar todas las tareas completadas</button>
     <%- include("components/todo_table") %>
 <%- include("template/footer") %>

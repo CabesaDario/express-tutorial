@@ -25,6 +25,7 @@ function printTodos(todos) {
                       <nav class='buttons'>
                         <button class='edit-button'>Editar</button>
                         <button class='delete-button'>Borrar</button>
+                        <button class='detail-button'>Detalle</button>
                       </nav>
                     </td>`;
     row.addEventListener("click", event => {
@@ -32,6 +33,8 @@ function printTodos(todos) {
         editTask(todo_id)
       }else if(event.target.className == 'delete-button'){
         deleteTask(todo_id)
+      }else if(event.target.className == 'detail-button'){
+        detailView(task) 
       }else{
         changeStateTask(task)
       }
@@ -65,4 +68,16 @@ function deleteTask(todo_id){
   var form = document.getElementById("delete_todo_form")
   form.action = form.action + todo_id;
   form.submit()
+}
+
+function deletePending(){
+  var form = document.getElementById("delete_all_todo_form")
+  form.submit()
+}
+function detailView(task){
+  detail_view.innerHTML = `<span id="close_button" class="close" onclick="closeDetail()">x</span><p>Nombre de la tarea: ${task.text}</p><p>Creada el: ${task.createdat}</p>`;
+  detail_view.style.display = "block";
+}
+function closeDetail(){   
+  detail_view.style.display = "none";
 }
